@@ -4,7 +4,8 @@
 .SYNOPSIS
     Short description
 .DESCRIPTION
-    Long description
+    Generates a yml configuration for a Home Assistant light template (https://www.home-assistant.io/integrations/light.template/) for the use
+    of a combination of a smart switch and a smart bulb e.g. Ikea Tradfri Bulb and Sonoff M5 Wall Switch
 .EXAMPLE
     PS C:\> <example usage>
     Explanation of what the example does
@@ -14,6 +15,14 @@
     Entity ID of the bulb
 .PARAMETER TemplateName
     Name for the new light template combing switch and blub
+.PARAMETER TemplateName
+    Name for the new light template file
+.PARAMETER Brightness
+    Enables Brightness for Bulb
+.PARAMETER Color
+    Enables Color for Bulb
+.PARAMETER Temperature
+    Enables Color Temperature for Bulb
 #>
 
 
@@ -28,6 +37,9 @@ param (
     [Parameter(Mandatory)]
     [String]
     $TemplateName,
+    [Parameter(Mandatory)]
+    [String]
+    $TemplateFile,
     [Switch]
     $Brightness,
     [Switch]
@@ -36,7 +48,7 @@ param (
     $Temperature
 )
 
-
+# General config for yaml template
 $Light = @(
     [ordered]@{
         platform = "template"
@@ -127,5 +139,6 @@ if ($Temperature) {
         }
     )
 }
+
 # Export template file again
 $Light | ConvertTo-Yaml -OutFile $TemplateFile

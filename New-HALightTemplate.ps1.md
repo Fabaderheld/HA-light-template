@@ -16,12 +16,14 @@ Short description
 ### __AllParameterSets
 
 ```
-New-HALightTemplate.ps1 [-SwitchID] <String> [-BlubID] <String> [-TemplateName] <String> [-Brightness] [-Color] [-Temperature] [<CommonParameters>]
+New-HALightTemplate.ps1 [-SwitchID] <String> [-BlubID] <String> [-TemplateName] <String> [-TemplateFile] <String> [-Brightness] [-Color] [-Temperature] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Long description
+Generates a yml configuration for a Home Assistant light template (https://www.home-assistant.io/integrations/light.template/) for the use
+of a combination of a smart switch and a smart bulb e.g.
+Ikea Tradfri Bulb and Sonoff M5 Wall Switch
 
 
 ## EXAMPLES
@@ -62,7 +64,7 @@ DontShow: False
 
 ### -Brightness
 
-{{ Fill Brightness Description }}
+Enables Brightness for Bulb
 
 ```yaml
 Type: SwitchParameter
@@ -80,7 +82,7 @@ DontShow: False
 
 ### -Color
 
-{{ Fill Color Description }}
+Enables Color for Bulb
 
 ```yaml
 Type: SwitchParameter
@@ -116,7 +118,7 @@ DontShow: False
 
 ### -Temperature
 
-{{ Fill Temperature Description }}
+Enables Color Temperature for Bulb
 
 ```yaml
 Type: SwitchParameter
@@ -127,6 +129,24 @@ Accepted values:
 Required: True (None) False (All)
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -TemplateFile
+
+{{ Fill TemplateFile Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 3
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
 DontShow: False
