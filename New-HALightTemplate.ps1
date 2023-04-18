@@ -68,14 +68,14 @@ $Light = @(
                 unique_id      = $UniqueID
                 turn_on        = [ordered]@{
                     service = "switch.turn_on"
-                    data    = "{}"
+                    data    = @{}
                     target  = @{
                         entity_id = $SwitchID
                     }
                 }
                 turn_off       = [ordered]@{
                     service = "switch.turn_off"
-                    data    = "{}"
+                    data    = @{}
                     target  = @{
                         entity_id = $SwitchID
                     }
@@ -85,7 +85,7 @@ $Light = @(
                 set_level      = @(
                     [ordered]@{
                         service = "switch.turn_on"
-                        data    = "{}"
+                        data    = @{}
                         target  = @{
                             entity_id = $SwitchID
                         }
@@ -110,7 +110,7 @@ if ($Color) {
     $Light.lights.$TemplateName["set_color"] = @(
         [ordered]@{
             service = "switch.turn_on"
-            data    = "{}"
+            data    = @{}
             target  = @{
                 entity_id = $SwitchID
             }
