@@ -133,7 +133,7 @@ if ($Temperature) {
     $Light.lights.$TemplateName["set_temperature"] = @(
         [ordered]@{
             service = "switch.turn_on"
-            data    = "{}"
+            data    = @{}
             target  = @{
                 entity_id = $SwitchID
             }
