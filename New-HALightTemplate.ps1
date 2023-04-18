@@ -151,4 +151,4 @@ if ($Temperature) {
 }
 
 # Export template file again
-$Light | ConvertTo-Yaml -OutFile $TemplateFile
+$Light | ConvertTo-Yaml -OutFile $TemplateFile -KeepArray
