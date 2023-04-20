@@ -16,7 +16,7 @@ Short description
 ### __AllParameterSets
 
 ```
-New-HALightTemplate.ps1 [-SwitchID] <String> [-LightID] <String> [-FriendlyName] <String> [-UniqueID] <String> [-TemplateName] <String> [-TemplateFile] <String> [-Brightness] [-Color] [-Temperature] [<CommonParameters>]
+New-HALightTemplate.ps1 [-SwitchID] <String> [-LightID] <String[]> [-FriendlyName] <String> [-UniqueID] <String> [-EntityID] <String> [-TemplateFile] <String> [-Brightness] [-Color] [-Temperature] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,6 +24,7 @@ New-HALightTemplate.ps1 [-SwitchID] <String> [-LightID] <String> [-FriendlyName]
 Generates a yml configuration for a Home Assistant light template (https://www.home-assistant.io/integrations/light.template/) for the use
 of a combination of a smart switch and a smart bulb e.g.
 Ikea Tradfri Bulb and Sonoff M5 Wall Switch, so the both are treated as ONE light entity
+Advantages are the the light bulb is indepent of Home Assistant but still manageable
 
 
 ## EXAMPLES
@@ -31,7 +32,7 @@ Ikea Tradfri Bulb and Sonoff M5 Wall Switch, so the both are treated as ONE ligh
 ### Example 1: EXAMPLE 1
 
 ```
-./New-HALightTemplate.ps1 -SwitchID switch.test -LightID light.test -FriendlyName "Test Light" -UniqueID "test_light" -TemplateName "test_light" -TemplateFile "/tmp/test_light.yaml"
+./New-HALightTemplate.ps1 -SwitchID switch.test -LightID light.test -FriendlyName "Test Light" -UniqueID "test_light" -EntityID "test_light" -TemplateFile "/tmp/test_light.yaml"
 Creates a new template 'test_light', FriendlyName 'Test Light' containing LightEntity light.test and SwitchEntity switch.test
 ```
 
@@ -80,6 +81,24 @@ Accept wildcard characters: False
 DontShow: False
 ```
 
+### -EntityID
+
+Name for the new light template combining switch and light, this will be the new light.%EntityID% Entity ID
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: TemplateName
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 4
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
 ### -FriendlyName
 
 Friendly Name in Home Assistant
@@ -100,10 +119,10 @@ DontShow: False
 
 ### -LightID
 
-Entity ID of the light
+Entity ID of the light(s), must start with light.*, if multiple lights are used an group will be created and used with the template
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases: LightEntity
 Accepted values: 
@@ -118,7 +137,7 @@ DontShow: False
 
 ### -SwitchID
 
-Entity ID of of the switch
+Entity ID of of the switch, must start with switch.*
 
 ```yaml
 Type: String
@@ -164,24 +183,6 @@ Accepted values:
 
 Required: True (All) False (None)
 Position: 5
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-```
-
-### -TemplateName
-
-Name for the new light template combining switch and light
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (All) False (None)
-Position: 4
 Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
